@@ -39,7 +39,7 @@ def add_to_startup(file_path=""):
 def clickRefresh():
         print("clickRefresh")
         global uimg
-        uimg=unsplash.get_image(1)
+        uimg=unsplash.get_image()
         img = ImageTk.PhotoImage(Image.open(uimg).resize((950, 425), Image.ANTIALIAS))
         limg = Label(root, image = img)
         limg.grid(row=0,column=0,columnspan=5)  
