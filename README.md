@@ -1,9 +1,11 @@
-# unsplash-wallpaper v1.2
-One of my first python applications, which automatically downloads a wallpaper of unsplash.com to get yourself a nice looking desktop. Currently only working with Windows. Tested on Windows 10.
+# unsplashipy 
+unsplashipy is based on unsplash-wallpaper v1.2
+and has added features for configuration and auto installtion to autostart.
+it comes with a nice gui and is very easy to use.
 
-As this is GitHub, feel free to fork and open a pull request for other platforms.
+# run
 
-## How to use
-Download the zip file [here](https://github.com/tobimori/unsplash-wallpaper/releases/) and extract it.
-Now simply execute the unsplash-wallpaper.exe file found in the releases tab of this repo.
-To get an automatic changing wallpaper, just add this file to autostart.
+
+# configure
+for advanced configuration edit the config.json
+
