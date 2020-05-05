@@ -7,6 +7,7 @@ import traceback
 import sys
 import time
 import settings
+import subprocess
 from screeninfo import get_monitors
 
 __title__ = 'Unsplash Wallpaper'
