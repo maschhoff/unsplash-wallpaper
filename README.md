@@ -7,7 +7,7 @@ it comes with a nice gui and is very easy to use.
 download the current release copy it to a C: folder like "documents" and run the gui.exe for configuration
 
 ## linux
-run python -m pip install -r requirements.txt
+run python3 -m pip install -r requirements.txt
 add unsplas_by.py to cron using crontab -e 
 
 
