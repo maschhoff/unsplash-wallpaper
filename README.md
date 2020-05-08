@@ -4,6 +4,7 @@ and has added features for configuration and auto installtion to autostart.
 it comes with a nice gui and is very easy to use.
 
 # run
+## windows
 download the current release copy it to a C: folder like "documents" and run the gui.exe for configuration
 
 ## linux
