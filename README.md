@@ -20,6 +20,7 @@ Notice if you move the folder run the startup installation again.
 
 # configure
 for advanced configuration edit the config.json
+packed with pyInstaller -F
 
 # donate
 Buy me a Pizza -> https://www.buymeacoffee.com/maschhoff
