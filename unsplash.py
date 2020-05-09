@@ -8,6 +8,8 @@ import sys
 import time
 import settings
 import subprocess
+import getpass
+import platform
 from screeninfo import get_monitors
 
 __title__ = 'Unsplash Wallpaper'
@@ -24,10 +26,15 @@ def get_screensize():
 
 
 def get_image():
-    directory = os.path.dirname(__file__) + "/.unsplash"
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-        print("\r[+] Status: Create temporary directory", end="")
+    directory = os.path.dirname(__file__)
+    USER_NAME = getpass.getuser()
+    osvar = platform.system()
+
+    if osvar == "Windows": 
+            directory = r'C:\Users\%s\AppData\Local\unsplashipy' % USER_NAME
+    else:
+            directory=os.path.dirname(__file__)
+    
     global filepath
     filepath = directory + "/" + str(time.time()) + ".jpg"
     print(f"\r[+] Status: Starting download...", end="")

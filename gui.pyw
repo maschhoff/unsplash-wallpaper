@@ -24,9 +24,11 @@ def clickExitButton():
         if osvar == "Windows": 
                 if c1var.get()==1:
                         add_to_startup()
+                else:
+                        del_from_startup()
 
         unsplash.del_image() 
-        exit()
+        sys.exit(0)
 
 def add_to_startup(file_path=""):
     if file_path == "":
@@ -34,9 +36,18 @@ def add_to_startup(file_path=""):
         print("path: "+file_path)
     bat_path = r'C:\Users\%s\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup' % USER_NAME
     print("bat: "+bat_path)
+    print("add_to_startup")
     #TODO startup?
     with open(bat_path + '\\' + "unsplashipy.bat", "w+") as bat_file:
-        bat_file.write(file_path+"\\unsplash_bg.exe")
+        bat_file.write("start "+file_path+"\\unsplash_bg.exe\nexit")
+        
+def del_from_startup(file_path=""):
+    print("del_from_startup")
+    bat_path = r'C:\Users\%s\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\unsplashipy.bat' % USER_NAME
+    print("bat: "+bat_path)
+    if os.path.isfile(bat_path):
+                os.remove(bat_path)
+    
 
 def clickRefresh():
         print("clickRefresh")

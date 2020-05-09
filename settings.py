@@ -7,9 +7,13 @@ settings - Helpers
 
 import json
 import os
+import getpass
+import platform
+
+
 
 def loadConfig():
-    confDir=os.path.dirname(__file__)+"/config.json"
+    confDir=directory+"/config.json"
     print("loadConfig() "+confDir)
     res={}
     with open(confDir, 'r') as fp:
@@ -18,6 +22,25 @@ def loadConfig():
    
 
 def writeConfig(config):
-    confDir=os.path.dirname(__file__)+"/config.json"
+    confDir=directory+"/config.json"
     with open(confDir, 'w') as fp:
         json.dump(config, fp)
+        
+        
+        
+USER_NAME = getpass.getuser()
+osvar = platform.system()
+
+directory=os.path.dirname(__file__)
+if osvar == "Windows": 
+        directory = r'C:\Users\%s\AppData\Local\unsplashipy' % USER_NAME
+else:
+        directory=os.path.dirname(__file__)
+ 
+if not os.path.exists(directory):
+        os.makedirs(directory)
+        config={}
+        config["updatetime"]=500
+        config["collection"]="wallpaper"
+        writeConfig(config)
+        print("\r[+] Status: Create directory", end="") 
