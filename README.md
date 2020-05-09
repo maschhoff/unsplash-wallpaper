@@ -8,8 +8,9 @@ it comes with a nice gui and is very easy to use.
 download the current release copy it to a C: folder like "documents" and run the gui.exe for configuration
 
 ## linux
-run python3 -m pip install -r requirements.txt
-add unsplas_by.py to cron using crontab -e 
+* run python3 -m pip install -r requirements.txt
+* run sudo apt-get install python3-pil python3-pil.imagetk
+* add unsplas_by.py to cron using crontab -e 
 
 
 # configure
