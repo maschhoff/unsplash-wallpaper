@@ -4,7 +4,7 @@ import os
 import unsplash
 import settings
 import getpass
-import sys
+import platform
 
 
 USER_NAME = getpass.getuser()
@@ -21,11 +21,12 @@ def clickExitButton():
         config["collection"]=collections.get()
         settings.writeConfig(config)
         
-        if c1var.get()==1:
-             add_to_startup()
+        if osvar is "Windows": 
+                if c1var.get()==1:
+                        add_to_startup()
 
         unsplash.del_image() 
-        sys.exit(0)
+        exit()
 
 def add_to_startup(file_path=""):
     if file_path == "":
@@ -35,7 +36,7 @@ def add_to_startup(file_path=""):
     print("bat: "+bat_path)
     #TODO startup?
     with open(bat_path + '\\' + "unsplashipy.bat", "w+") as bat_file:
-        bat_file.write("cd "+file_path+"\nunsplash_bg.exe")
+        bat_file.write("cd "+file_path+"\npythonw ./unsplash_bg.pyw")
 
 def clickRefresh():
         print("clickRefresh")
@@ -50,11 +51,19 @@ def clickRefresh():
         
 
 def clicksetWP():
-        unsplash.windows(uimg)
         print("clicksetWP")
+
         
 
+        if osvar == "Windows":
+                unsplash.windows(uimg)
+        elif osvar == "Linux":
+                unsplash.linux(uimg)
+        else:
+            print("\r[-] Status: Sorry, only supporting Windows right now. Feel free to fork and add support ;)", end="")
 
+
+osvar = platform.system()
 config=settings.loadConfig() 
 
 root = Tk()
@@ -85,10 +94,12 @@ collections.set(config["collection"])
 w = OptionMenu(root, collections, "wallpaper","nature", "travel", "animals","landscape")
 w.grid(row = 2, column = 2, pady = 2) 
  
-c1var = IntVar(root) 
-c1 = Checkbutton(root, text='Install to Startup', onvalue=1, offvalue=0, variable=c1var)
-c1.select()
-c1.grid(row = 2, column = 3, sticky = E, pady = 2)
+
+if osvar is "Windows": 
+        c1var = IntVar(root) 
+        c1 = Checkbutton(root, text='Install to Startup', onvalue=1, offvalue=0, variable=c1var)
+        c1.select()
+        c1.grid(row = 2, column = 3, sticky = E, pady = 2)
 
 exitButton = Button(root, text="Save and Exit", command=clickExitButton)
 exitButton.grid(row = 2, column = 4, sticky = S, pady = 2)

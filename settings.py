@@ -6,15 +6,18 @@ settings - Helpers
 """
 
 import json
+import os
 
 def loadConfig():
-    #print("loadConfig()")
+    confDir=os.path.dirname(__file__)+"/config.json"
+    print("loadConfig() "+confDir)
     res={}
-    with open('./config.json', 'r') as fp:
+    with open(confDir, 'r') as fp:
         res = json.load(fp)
     return res
    
 
 def writeConfig(config):
-	with open('./config.json', 'w') as fp:
-	    json.dump(config, fp)
+    confDir=os.path.dirname(__file__)+"/config.json"
+    with open(confDir, 'w') as fp:
+        json.dump(config, fp)

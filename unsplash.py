@@ -24,7 +24,7 @@ def get_screensize():
 
 
 def get_image():
-    directory = os.getcwd() + "/.unsplash"
+    directory = os.path.dirname(__file__) + "/.unsplash"
     if not os.path.exists(directory):
         os.makedirs(directory)
         print("\r[+] Status: Create temporary directory", end="")
@@ -80,7 +80,7 @@ def main():
         print(f"{__title__} v{__version__} by {__author__}")
         osvar = platform.system()
 
-        #TODO Linux
+       
         if osvar == "Windows":
                 windows(get_image())
         elif osvar == "Linux":
