@@ -21,7 +21,7 @@ def clickExitButton():
         config["collection"]=collections.get()
         settings.writeConfig(config)
         
-        if osvar is "Windows": 
+        if osvar == "Windows": 
                 if c1var.get()==1:
                         add_to_startup()
 
@@ -36,7 +36,7 @@ def add_to_startup(file_path=""):
     print("bat: "+bat_path)
     #TODO startup?
     with open(bat_path + '\\' + "unsplashipy.bat", "w+") as bat_file:
-        bat_file.write("cd "+file_path+"\npythonw ./unsplash_bg.pyw")
+        bat_file.write(file_path+"\\unsplash_bg.exe")
 
 def clickRefresh():
         print("clickRefresh")
@@ -53,7 +53,6 @@ def clickRefresh():
 def clicksetWP():
         print("clicksetWP")
 
-        
 
         if osvar == "Windows":
                 unsplash.windows(uimg)
@@ -95,7 +94,7 @@ w = OptionMenu(root, collections, "wallpaper","nature", "travel", "animals","lan
 w.grid(row = 2, column = 2, pady = 2) 
  
 
-if osvar is "Windows": 
+if osvar == "Windows": 
         c1var = IntVar(root) 
         c1 = Checkbutton(root, text='Install to Startup', onvalue=1, offvalue=0, variable=c1var)
         c1.select()
