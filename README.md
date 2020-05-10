@@ -9,8 +9,8 @@ it comes with a nice gui and is very easy to use.
 
 # run
 ## windows
-download the current release and run GUI_unsplashipy.exe for configurtion. 
-Notice if you move the folder run the startup installation again.
+* download the current release and run unsplashipy.exe for configurtion. 
+* Notice if you move unsplashipy.exe run the startup installation again.
 
 ## linux
 * run python3 -m pip install -r requirements.txt
@@ -18,8 +18,9 @@ Notice if you move the folder run the startup installation again.
 * add "python3 gui.pyw -bg" to cron using crontab -e 
 
 # configure
-for advanced configuration edit the config.json
-packed with pyInstaller -F
+* for advanced configuration edit the config.json in the app folder (linux) or in \AppData\Local\unsplashipy (Windows)
+* Run unsplashipy.exe -bg for the background task 
+* packed with pyInstaller -F
 
 # donate
 Buy me a Pizza -> https://www.buymeacoffee.com/maschhoff
