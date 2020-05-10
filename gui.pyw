@@ -3,8 +3,10 @@ from PIL import ImageTk, Image
 import os
 import unsplash
 import settings
+import time
 import getpass
 import platform
+import sys
 
 
 USER_NAME = getpass.getuser()
@@ -63,60 +65,72 @@ def clickRefresh():
 
 def clicksetWP():
         print("clicksetWP")
-
-
         if osvar == "Windows":
                 unsplash.windows(uimg)
         elif osvar == "Linux":
                 unsplash.linux(uimg)
-        else:
-            print("\r[-] Status: Sorry, only supporting Windows right now. Feel free to fork and add support ;)", end="")
+
+
+
+def bg_task():
+
+        while True:
+                unsplash.main()
+                time.sleep(config["updatetime"])
+                unsplash.del_image()
 
 
 osvar = platform.system()
 config=settings.loadConfig() 
 
-root = Tk()
+print(str(sys.argv)+"_:"+str(len(sys.argv)))
 
-global limg
-clickRefresh()
+if len(sys.argv)>1:
+        if sys.argv[1] == "-background" or sys.argv[1] == "-bg":
+                print("run background task")
+                bg_task()
+else:
+        print("start GUI")
+        root = Tk()
 
-refreshButton = Button(root, text="Next Image", command=clickRefresh)
-refreshButton.grid(row = 1, column = 0, sticky = W, pady = 2)
+        global limg
+        clickRefresh()
 
-setWPButton = Button(root, text="Set as Wallpaper", command=clicksetWP)
-setWPButton.grid(row = 2, column = 0, sticky = W, pady = 2)
+        refreshButton = Button(root, text="Next Image", command=clickRefresh)
+        refreshButton.grid(row = 1, column = 0, sticky = W, pady = 2)
 
-
-l1 = Label(root, text = "Refresh Time:") 
-l2 = Label(root, text = "Collection:") 
-  
-l1.grid(row = 1, column = 1, sticky = E, pady = 2) 
-l2.grid(row = 2, column = 1, sticky = E, pady = 2) 
-  
-times = StringVar(root)
-times.set(list(cron.keys())[list(cron.values()).index(config["updatetime"])]) 
-w = OptionMenu(root, times, *list(cron.keys()))
-w.grid(row = 1, column = 2, pady = 2) 
-
-collections = StringVar(root)
-collections.set(config["collection"]) 
-w = OptionMenu(root, collections, "wallpaper","nature", "travel", "animals","landscape")
-w.grid(row = 2, column = 2, pady = 2) 
- 
-
-if osvar == "Windows": 
-        c1var = IntVar(root) 
-        c1 = Checkbutton(root, text='Install to Startup', onvalue=1, offvalue=0, variable=c1var)
-        c1.select()
-        c1.grid(row = 2, column = 3, sticky = E, pady = 2)
-
-exitButton = Button(root, text="Save and Exit", command=clickExitButton)
-exitButton.grid(row = 2, column = 4, sticky = S, pady = 2)
+        setWPButton = Button(root, text="Set as Wallpaper", command=clicksetWP)
+        setWPButton.grid(row = 2, column = 0, sticky = W, pady = 2)
 
 
-root.geometry("950x500+300+150")
-root.resizable(width=False, height=False)
-root.title('Unsplash Wallpaper (github.com/maschhoff)')
-root.mainloop()
+        l1 = Label(root, text = "Refresh Time:") 
+        l2 = Label(root, text = "Collection:") 
 
+        l1.grid(row = 1, column = 1, sticky = E, pady = 2) 
+        l2.grid(row = 2, column = 1, sticky = E, pady = 2) 
+
+        times = StringVar(root)
+        times.set(list(cron.keys())[list(cron.values()).index(config["updatetime"])]) 
+        w = OptionMenu(root, times, *list(cron.keys()))
+        w.grid(row = 1, column = 2, pady = 2) 
+
+        collections = StringVar(root)
+        collections.set(config["collection"]) 
+        w = OptionMenu(root, collections, "wallpaper","nature", "travel", "animals","landscape")
+        w.grid(row = 2, column = 2, pady = 2) 
+
+
+        if osvar == "Windows": 
+                c1var = IntVar(root) 
+                c1 = Checkbutton(root, text='Install to Startup', onvalue=1, offvalue=0, variable=c1var)
+                c1.select()
+                c1.grid(row = 2, column = 3, sticky = E, pady = 2)
+
+        exitButton = Button(root, text="Save and Exit", command=clickExitButton)
+        exitButton.grid(row = 2, column = 4, sticky = S, pady = 2)
+
+
+        root.geometry("950x500+300+150")
+        root.resizable(width=False, height=False)
+        root.title('Unsplash Wallpaper (github.com/maschhoff)')
+        root.mainloop()
