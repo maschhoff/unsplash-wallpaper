@@ -15,8 +15,7 @@ Notice if you move the folder run the startup installation again.
 ## linux
 * run python3 -m pip install -r requirements.txt
 * run sudo apt-get install python3-pil python3-pil.imagetk
-* add unsplas_by.py to cron using crontab -e 
-
+* add "python3 gui.pyw -bg" to cron using crontab -e 
 
 # configure
 for advanced configuration edit the config.json
